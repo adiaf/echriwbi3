@@ -14,19 +14,17 @@ import com.echriwbi3.api.service.FarmerService;
 @CrossOrigin(origins = "*")
 @RestController
 public class FarmerController {
-	
-	@Autowired FarmerService farmerService;
-	
-	@CrossOrigin(origins = "*")
+
+	@Autowired
+	FarmerService farmerService;
+
 	@RequestMapping(name = "/")
-	public List<Farmer> getAllFarmers(){
-		
+	public List<Farmer> getAllFarmers() {
+
 		final List<Farmer> result = new ArrayList<Farmer>();
 		farmerService.findAll().forEach(result::add);
 
-		
-		
 		return result;
-		
+
 	}
 }
