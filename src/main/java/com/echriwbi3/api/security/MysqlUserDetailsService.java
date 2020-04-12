@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import com.echriwbi3.api.entity.User;
+import com.echriwbi3.api.entity.accessManagement.User;
 import com.echriwbi3.api.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;

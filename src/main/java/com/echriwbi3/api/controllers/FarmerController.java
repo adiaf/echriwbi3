@@ -45,6 +45,11 @@ public class FarmerController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/admin",method = RequestMethod.POST)
+	public Farmer addFarmer(@RequestBody Farmer farmer) {
+		return farmerService.save(farmer);
+	}
+	
 	@RequestMapping("/")
 	public String whelcom() {
 

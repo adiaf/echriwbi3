@@ -2,17 +2,15 @@ package com.echriwbi3.api.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 @Entity
-@Table(name="farmer")
-public class Farmer {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
-	private Integer id;
+@Data
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+public class Farmer extends CommonEntity{
 	
 	@Column(name="name")
 	private String name;
@@ -20,22 +18,4 @@ public class Farmer {
 	@Column(name="village")
 	private String village;
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getVillage() {
-		return village;
-	}
-	public void setVillage(String village) {
-		this.village = village;
-	}
 }

@@ -14,4 +14,8 @@ public class FarmerService {
     public Iterable<Farmer> findAll() {
         return FarmerRepository.findAll();
     }
+    public Farmer save(Farmer farmer) {
+        return FarmerRepository.save(farmer);
+    }
+    
 }
