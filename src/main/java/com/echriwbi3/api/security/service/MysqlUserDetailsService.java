@@ -1,4 +1,4 @@
-package com.echriwbi3.api.security;
+package com.echriwbi3.api.security.service;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.echriwbi3.api.entity.accessManagement.User;
+import com.echriwbi3.api.security.models.MysqlUserDetails;
 import com.echriwbi3.api.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;

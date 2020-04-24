@@ -1,10 +1,11 @@
-package com.echriwbi3.api.security;
+package com.echriwbi3.api.security.config;
 
 import com.echriwbi3.api.security.filters.JwtRequestFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -33,18 +34,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService)
+            .passwordEncoder(getPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+            // don't create session           
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
-            .antMatchers("/authenticate").permitAll()
-            .anyRequest().authenticated()
-            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
+            .antMatchers("/authenticate").permitAll()
+            .antMatchers(HttpMethod.OPTIONS).permitAll()
+            .anyRequest().authenticated();
+
+        // Custom JWT based security filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        // disable page caching
+        http.headers().cacheControl().disable();
     }
 
     @Bean

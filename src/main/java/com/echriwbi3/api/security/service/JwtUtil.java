@@ -1,4 +1,4 @@
-package com.echriwbi3.api.security;
+package com.echriwbi3.api.security.service;
 
 import java.util.Date;
 import java.util.HashMap;

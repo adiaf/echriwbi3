@@ -1,4 +1,4 @@
-package com.echriwbi3.api.security;
+package com.echriwbi3.api.security.models;
 
 import java.util.Collection;
 

@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.echriwbi3.api.security.JwtUtil;
-import com.echriwbi3.api.security.MysqlUserDetailsService;
+import com.echriwbi3.api.security.service.JwtUtil;
+import com.echriwbi3.api.security.service.MysqlUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -50,6 +50,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
                     }
                 }
+                
                 filterChain.doFilter(request, response);
 
     }
