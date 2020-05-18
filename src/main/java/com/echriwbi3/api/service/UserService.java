@@ -57,6 +57,10 @@ public class UserService {
     public UserService(@Lazy PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
+
+	public Optional<User> findById(Long id) {
+		return userRepository.findById(id);
+	}
     
 
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,11 +21,14 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class User extends CommonEntity{
+public class User extends CommonEntity {
 
     @Column(unique = true)
     @NotNull
     private String username;
+    private String firstName;
+    private String lastName;
+    private String email;
     @NotNull
     private String password;
     @NotNull
@@ -40,7 +41,6 @@ public class User extends CommonEntity{
     private boolean active;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
     public User(Long id, String username, String password, Date expirationDate, Date credentialsExpirationDate,
@@ -54,6 +54,5 @@ public class User extends CommonEntity{
         this.active = active;
         this.roles = roles;
     }
-
 
 }

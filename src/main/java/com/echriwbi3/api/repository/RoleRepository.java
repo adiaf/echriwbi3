@@ -1,11 +1,11 @@
 package com.echriwbi3.api.repository;
 
-import com.echriwbi3.api.entity.accessManagement.User;
+import com.echriwbi3.api.entity.accessManagement.Role;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
-public interface RoleRepository extends CrudRepository<User, Long> {
+@RepositoryRestResource(collectionResourceRel = "roles", path = "roles")
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
 }

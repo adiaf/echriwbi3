@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class Role extends CommonEntity{
+public class Role extends CommonEntity {
     private String roleName;
 }

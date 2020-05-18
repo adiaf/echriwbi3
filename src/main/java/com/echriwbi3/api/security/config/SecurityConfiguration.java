@@ -29,25 +29,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Autowired 
+    @Autowired
     JwtRequestFilter jwtRequestFilter;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-            .passwordEncoder(getPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-            // don't create session           
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests()
+                // don't create session
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 
-            .antMatchers("/authenticate").permitAll()
-            .antMatchers(HttpMethod.OPTIONS).permitAll()
-            .anyRequest().authenticated();
+                .antMatchers("/authenticate").permitAll().antMatchers("/api").permitAll()
+                .antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest().authenticated();
 
         // Custom JWT based security filter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

@@ -11,6 +11,7 @@ public class MysqlUserDetails implements UserDetails {
      *
      */
     private static final long serialVersionUID = 1L;
+    private Long id;
     private String username;
     private String password;
     private boolean isAccountNonExpired;
@@ -54,8 +55,9 @@ public class MysqlUserDetails implements UserDetails {
         return this.isEnabled;
     }
 
-    public MysqlUserDetails(String username, String password, boolean isAccountNonExpired, boolean isAccountNonLocked,
+    public MysqlUserDetails(Long id, String username, String password, boolean isAccountNonExpired, boolean isAccountNonLocked,
             boolean isCredentialsNonExpired, boolean isEnabled, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.isAccountNonExpired = isAccountNonExpired;
@@ -63,6 +65,14 @@ public class MysqlUserDetails implements UserDetails {
         this.isCredentialsNonExpired = isCredentialsNonExpired;
         this.isEnabled = isEnabled;
         this.authorities = authorities;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

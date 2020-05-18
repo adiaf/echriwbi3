@@ -19,9 +19,9 @@ public class CommonEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	protected Long id;
-	
+
 	protected Date created;
-	
+
 	protected Date updated;
 
 	@PrePersist
@@ -33,5 +33,5 @@ public class CommonEntity {
 	public void onUpdate() {
 		this.updated = new Date();
 	}
-	
+
 }

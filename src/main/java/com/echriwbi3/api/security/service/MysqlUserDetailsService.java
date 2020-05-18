@@ -12,7 +12,6 @@ import com.echriwbi3.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class MysqlUserDetailsService implements UserDetailsService {
     UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public MysqlUserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         final Optional<User> user = userService.findByUsername(username);
         user.orElseThrow(() -> new UsernameNotFoundException("No user found with username " + username));
 
@@ -35,6 +34,29 @@ public class MysqlUserDetailsService implements UserDetailsService {
         });
 
         return new MysqlUserDetails(
+            user.get().getId(), 
+            user.get().getUsername(), 
+            user.get().getPassword(), 
+            (new Date()).compareTo(user.get().getExpirationDate()) > 0,
+            !user.get().isLocked(), 
+            (new Date()).compareTo(user.get().getCredentialsExpirationDate()) > 0, 
+            user.get().isActive(), 
+            grantedAuthorities
+        );
+    }
+
+    public MysqlUserDetails loadUserById(final Long id) throws UsernameNotFoundException {
+        final Optional<User> user = userService.findById(id);
+        user.orElseThrow(() -> new UsernameNotFoundException("No user found with username " + id));
+
+        final Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+
+        user.get().getRoles().stream().forEach(role -> {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        });
+
+        return new MysqlUserDetails(
+            user.get().getId(), 
             user.get().getUsername(), 
             user.get().getPassword(), 
             (new Date()).compareTo(user.get().getExpirationDate()) > 0,
