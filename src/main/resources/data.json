@@ -1,0 +1,9 @@
+[{
+        "_class": "com.echriwbi3.api.entity.accessManagement.Role",
+        "roleName": "ROLE_ADMIN"
+    },
+    {
+        "_class": "com.echriwbi3.api.entity.accessManagement.Role",
+        "roleName": "ROLE_USER"
+    }
+]

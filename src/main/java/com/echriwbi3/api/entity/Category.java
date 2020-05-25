@@ -2,17 +2,13 @@ package com.echriwbi3.api.entity;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Document(collection = "category")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
@@ -20,12 +16,11 @@ public class Category extends CommonEntity {
 
 	private String name;
 	private String description;
-	@OneToMany(fetch = FetchType.EAGER)
 	private List<Article> articles;
-	@OneToOne(fetch = FetchType.EAGER)
 	private Category parentCategory;
 	private Integer categoryLevel;
-	@Column(columnDefinition = "boolean default true")
-	private boolean enabeled;
+	private boolean enabeled = true;
+
+	private List<Category> childrenCategories;
 
 }

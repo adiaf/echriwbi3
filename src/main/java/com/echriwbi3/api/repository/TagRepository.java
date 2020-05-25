@@ -2,8 +2,8 @@ package com.echriwbi3.api.repository;
 
 import com.echriwbi3.api.entity.Tag;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface TagRepository extends JpaRepository<Tag, Long> {
+public interface TagRepository extends MongoRepository<Tag, String> {
 
 }

@@ -25,42 +25,41 @@ public class UserService {
         return users.stream().findFirst();
     }
 
-	public List<User> findAll() {
+    public List<User> findAll() {
         final List<User> result = new ArrayList<User>();
         userRepository.findAll().forEach(result::add);
         result.stream().forEach(u -> u.setPassword(null));
-		return result;
-	}
+        return result;
+    }
 
-	public User save(User user) {
+    public User save(User user) {
         if (user.getPassword() != null && !user.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-		return userRepository.save(user);
-	}
+        return userRepository.save(user);
+    }
 
-	public void delete(Long id) {
-		userRepository.deleteById(id);
-	}
+    public void delete(String id) {
+        userRepository.deleteById(id);
+    }
 
-	public User update(User user, Long id) {
+    public User update(User user, String id) {
         if (user.getId().equals(id)) {
             if (user.getPassword() != null && !user.getPassword().isEmpty()) {
                 user.setPassword(passwordEncoder.encode(user.getPassword()));
             }
             return userRepository.save(user);
         }
-		return null;
+        return null;
     }
-    
+
     @Autowired
     public UserService(@Lazy PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
 
-	public Optional<User> findById(Long id) {
-		return userRepository.findById(id);
-	}
-    
+    public Optional<User> findById(String id) {
+        return userRepository.findById(id);
+    }
 
 }

@@ -3,27 +3,24 @@ package com.echriwbi3.api.entity.accessManagement;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.echriwbi3.api.entity.CommonEntity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "users")
+@Document(collection = "users")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
+@AllArgsConstructor
 public class User extends CommonEntity {
 
-    @Column(unique = true)
     @NotNull
     private String username;
     private String firstName;
@@ -40,19 +37,6 @@ public class User extends CommonEntity {
     @NotNull
     private boolean active;
 
-    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
-
-    public User(Long id, String username, String password, Date expirationDate, Date credentialsExpirationDate,
-            boolean locked, boolean active, List<Role> roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.expirationDate = expirationDate;
-        this.credentialsExpirationDate = credentialsExpirationDate;
-        this.locked = locked;
-        this.active = active;
-        this.roles = roles;
-    }
 
 }

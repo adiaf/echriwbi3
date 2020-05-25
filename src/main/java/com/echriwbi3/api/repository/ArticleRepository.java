@@ -2,8 +2,8 @@ package com.echriwbi3.api.repository;
 
 import com.echriwbi3.api.entity.Article;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ArticleRepository extends JpaRepository<Article, Long> {
+public interface ArticleRepository extends MongoRepository<Article, String> {
 
 }

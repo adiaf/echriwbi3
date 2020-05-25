@@ -33,19 +33,13 @@ public class MysqlUserDetailsService implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
 
-        return new MysqlUserDetails(
-            user.get().getId(), 
-            user.get().getUsername(), 
-            user.get().getPassword(), 
-            (new Date()).compareTo(user.get().getExpirationDate()) > 0,
-            !user.get().isLocked(), 
-            (new Date()).compareTo(user.get().getCredentialsExpirationDate()) > 0, 
-            user.get().isActive(), 
-            grantedAuthorities
-        );
+        return new MysqlUserDetails(user.get().getId(), user.get().getUsername(), user.get().getPassword(),
+                (new Date()).compareTo(user.get().getExpirationDate()) > 0, !user.get().isLocked(),
+                (new Date()).compareTo(user.get().getCredentialsExpirationDate()) > 0, user.get().isActive(),
+                grantedAuthorities);
     }
 
-    public MysqlUserDetails loadUserById(final Long id) throws UsernameNotFoundException {
+    public MysqlUserDetails loadUserById(final String id) throws UsernameNotFoundException {
         final Optional<User> user = userService.findById(id);
         user.orElseThrow(() -> new UsernameNotFoundException("No user found with username " + id));
 
@@ -55,16 +49,10 @@ public class MysqlUserDetailsService implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
 
-        return new MysqlUserDetails(
-            user.get().getId(), 
-            user.get().getUsername(), 
-            user.get().getPassword(), 
-            (new Date()).compareTo(user.get().getExpirationDate()) > 0,
-            !user.get().isLocked(), 
-            (new Date()).compareTo(user.get().getCredentialsExpirationDate()) > 0, 
-            user.get().isActive(), 
-            grantedAuthorities
-        );
+        return new MysqlUserDetails(user.get().getId(), user.get().getUsername(), user.get().getPassword(),
+                (new Date()).compareTo(user.get().getExpirationDate()) > 0, !user.get().isLocked(),
+                (new Date()).compareTo(user.get().getCredentialsExpirationDate()) > 0, user.get().isActive(),
+                grantedAuthorities);
     }
 
 }

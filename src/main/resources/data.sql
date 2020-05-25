@@ -1,4 +1,4 @@
-DELETE FROM `users_roles`;
+/*DELETE FROM `users_roles`;
 DELETE FROM `article`;
 DELETE FROM `article_tags`;
 DELETE FROM `tag`;
@@ -248,4 +248,4 @@ INSERT INTO `tag` (`name`,`description`) VALUES ("Filignano","Ap #405-7690 Facil
 INSERT INTO `tag` (`name`,`description`) VALUES ("Ostra Vetere","P.O. Box 361, 6756 Sapien St.");
 INSERT INTO `tag` (`name`,`description`) VALUES ("Port Alice","P.O. Box 352, 3284 Condimentum. Avenue");
 INSERT INTO `tag` (`name`,`description`) VALUES ("Ripabottoni","Ap #145-3855 Lobortis Ave");
-INSERT INTO `tag` (`name`,`description`) VALUES ("Anamur","410-8996 Diam. Street");
+INSERT INTO `tag` (`name`,`description`) VALUES ("Anamur","410-8996 Diam. Street");*/

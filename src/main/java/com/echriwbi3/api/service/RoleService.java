@@ -19,11 +19,11 @@ public class RoleService {
 		return roleRepository.save(role);
 	}
 
-	public void delete(Long id) {
+	public void delete(String id) {
 		roleRepository.deleteById(id);
 	}
 
-	public Role update(Role role, Long id) {
+	public Role update(Role role, String id) {
 		if (role.getId().equals(id)) {
 			return roleRepository.save(role);
 		}
