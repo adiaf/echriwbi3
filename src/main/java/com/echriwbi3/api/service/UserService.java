@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.echriwbi3.api.entity.accessManagement.QUser;
 import com.echriwbi3.api.entity.accessManagement.User;
 import com.echriwbi3.api.repository.UserRepository;
+import com.querydsl.core.types.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -21,8 +23,10 @@ public class UserService {
 
     public Optional<User> findByUsername(final String username) {
 
-        final List<User> users = userRepository.findByUsername(username);
-        return users.stream().findFirst();
+        QUser qUser = new QUser("user");
+        Predicate predicate = qUser.username.eq(username);
+
+        return userRepository.findOne(predicate);
     }
 
     public List<User> findAll() {
@@ -39,8 +43,9 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void delete(String id) {
-        userRepository.deleteById(id);
+    public void delete(User user) {
+        userRepository.delete(user);
+
     }
 
     public User update(User user, String id) {
@@ -56,10 +61,6 @@ public class UserService {
     @Autowired
     public UserService(@Lazy PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-    }
-
-    public Optional<User> findById(String id) {
-        return userRepository.findById(id);
     }
 
 }

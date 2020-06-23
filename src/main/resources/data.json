@@ -1,9 +1,12 @@
 [{
-        "_class": "com.echriwbi3.api.entity.accessManagement.Role",
-        "roleName": "ROLE_ADMIN"
-    },
-    {
-        "_class": "com.echriwbi3.api.entity.accessManagement.Role",
-        "roleName": "ROLE_USER"
-    }
-]
+    "_class": "com.echriwbi3.api.entity.accessManagement.User",
+    "username": "adf",
+    "password": "$2a$10$8Zs9WYLX77m5T.EIthx4CupwaCJ1DNX0IRDdhPJmIgdT/XJZjvrum",
+    "first_name": "Abderahmane",
+    "last_name": "DIAF",
+    "email": "a.diaf@outlook.fr",
+    "roles": [{
+        "$ref": "roles",
+        "$id": "5ecc4c6f8a42956b204999bd"
+    }]
+}]

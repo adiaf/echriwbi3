@@ -3,16 +3,16 @@ package com.echriwbi3.api.entity;
 import java.util.Date;
 
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import lombok.Data;
 
-@Document(collection = "commonEntity")
 @Data
 public abstract class CommonEntity {
-	@Id
+
+	@MongoId
 	protected String id;
 
 	@CreatedDate
@@ -20,5 +20,8 @@ public abstract class CommonEntity {
 
 	@LastModifiedDate
 	protected Date updated;
+
+	@Version
+	private Long version;
 
 }

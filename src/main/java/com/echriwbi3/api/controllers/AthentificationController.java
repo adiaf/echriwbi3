@@ -8,9 +8,8 @@ import com.echriwbi3.api.entity.accessManagement.User;
 import com.echriwbi3.api.security.models.AuthenticationRequest;
 import com.echriwbi3.api.security.models.AuthenticationResponse;
 import com.echriwbi3.api.security.models.ConnectedUser;
-import com.echriwbi3.api.security.models.MysqlUserDetails;
 import com.echriwbi3.api.security.service.JwtUtil;
-import com.echriwbi3.api.security.service.MysqlUserDetailsService;
+import com.echriwbi3.api.security.service.UserDetailsServiceImpl;
 import com.echriwbi3.api.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +32,7 @@ public class AthentificationController {
 	AuthenticationManager authenticationManager;
 
 	@Autowired
-	MysqlUserDetailsService mysqlUserDetailsService;
+	UserDetailsServiceImpl uerDetailsService;
 
 	@Autowired
 	JwtUtil jwtUtil;
@@ -52,8 +52,7 @@ public class AthentificationController {
 			throw new Exception("Incorrect username or password", e);
 		}
 
-		final MysqlUserDetails userDetails = mysqlUserDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails = uerDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String jwtToken = jwtUtil.generateToken(userDetails);
 
@@ -73,8 +72,8 @@ public class AthentificationController {
 		}
 		final Optional<User> connectedUser = userService.findByUsername(username);
 		connectedUser.orElseThrow(() -> new UsernameNotFoundException("No user found"));
-		return new ConnectedUser(connectedUser.get().getFirstName(), connectedUser.get().getLastName(),
-				connectedUser.get().getUsername(), connectedUser.get().getEmail(), token,
-				connectedUser.get().getRoles());
+		User c = connectedUser.get();
+		return new ConnectedUser(c.getFirstName(), c.getLastName(), c.getUsername(), c.getEmail(), token, c.getRoles());
 	}
+
 }

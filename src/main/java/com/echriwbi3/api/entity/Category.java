@@ -1,7 +1,9 @@
 package com.echriwbi3.api.entity;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -13,14 +15,17 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public class Category extends CommonEntity {
-
+	@NotNull
+	@Indexed(unique = true)
 	private String name;
-	private String description;
-	private List<Article> articles;
-	private Category parentCategory;
-	private Integer categoryLevel;
-	private boolean enabeled = true;
 
-	private List<Category> childrenCategories;
+	private String description;
+
+	@DBRef
+	private Category parentCategory;
+
+	private Integer categoryLevel;
+
+	private boolean enabeled = true;
 
 }

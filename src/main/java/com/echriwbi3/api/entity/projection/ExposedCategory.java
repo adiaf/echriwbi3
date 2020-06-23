@@ -25,5 +25,5 @@ public interface ExposedCategory {
     boolean isEnabeled();
 
     @Value("#{target.getParentCategory() != null ? target.getParentCategory().getId() : null}")
-    Long getParentId();
+    String getParentCategory();
 }

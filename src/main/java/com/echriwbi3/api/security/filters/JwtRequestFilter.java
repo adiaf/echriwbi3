@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.echriwbi3.api.security.service.JwtUtil;
-import com.echriwbi3.api.security.service.MysqlUserDetailsService;
+import com.echriwbi3.api.security.service.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,36 +22,38 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
-	MysqlUserDetailsService mysqlUserDetailsService;
-	
-	@Autowired
+    UserDetailsServiceImpl userDetailsServiceImpl;
+
+    @Autowired
     JwtUtil jwtUtil;
-    
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        
-                final String authorizationHeader = request.getHeader("Authorization");
 
-                String username = null;
-                String token = null;
+        final String authorizationHeader = request.getHeader("Authorization");
 
-                if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                    token = authorizationHeader.substring(7);
-                    username = jwtUtil.extractUsername(token); 
-                }
+        String username = null;
+        String token = null;
 
-                if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                    final UserDetails userDetails = mysqlUserDetailsService.loadUserByUsername(username);
-                    if (jwtUtil.validateToken(token, userDetails)) {
-                        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                        usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            token = authorizationHeader.substring(7);
+            username = jwtUtil.extractUsername(token);
+        }
 
-                    }
-                }
-                
-                filterChain.doFilter(request, response);
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            final UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(username);
+            if (jwtUtil.validateToken(token, userDetails)) {
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                usernamePasswordAuthenticationToken
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+            }
+        }
+
+        filterChain.doFilter(request, response);
 
     }
 

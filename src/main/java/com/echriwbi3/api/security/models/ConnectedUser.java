@@ -1,6 +1,6 @@
 package com.echriwbi3.api.security.models;
 
-import java.util.List;
+import java.util.Set;
 
 import com.echriwbi3.api.entity.accessManagement.Role;
 
@@ -14,10 +14,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConnectedUser {
+
     private String firstName;
     private String lastName;
     private String username;
     private String email;
     private String jwt;
-    private List<Role> roles;
+    private Set<Role> roles;
 }
