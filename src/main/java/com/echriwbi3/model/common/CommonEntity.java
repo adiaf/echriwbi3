@@ -1,4 +1,4 @@
-package com.echriwbi3.entity.common;
+package com.echriwbi3.model.common;
 
 import java.util.Date;
 

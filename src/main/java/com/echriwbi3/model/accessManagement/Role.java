@@ -1,4 +1,4 @@
-package com.echriwbi3.entity.accessManagement;
+package com.echriwbi3.model.accessManagement;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

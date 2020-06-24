@@ -1,4 +1,4 @@
-package com.echriwbi3.entity.accessManagement;
+package com.echriwbi3.model.accessManagement;
 
 import java.util.Set;
 
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends com.echriwbi3.entity.common.CommonEntity {
+public class User extends com.echriwbi3.model.common.CommonEntity {
 
 	@NotBlank
 	@Size(max = 20)

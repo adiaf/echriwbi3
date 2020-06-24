@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.echriwbi3.entity.accessManagement.User;
+import com.echriwbi3.model.accessManagement.User;
 import com.echriwbi3.security.models.UserDetailsImpl;
 import com.echriwbi3.service.UserService;
 

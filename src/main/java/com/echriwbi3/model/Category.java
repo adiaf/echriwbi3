@@ -1,4 +1,4 @@
-package com.echriwbi3.entity;
+package com.echriwbi3.model;
 
 import javax.validation.constraints.NotNull;
 
@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.echriwbi3.entity.common.CommonEntity;
+import com.echriwbi3.model.common.CommonEntity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

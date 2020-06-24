@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.echriwbi3.entity.accessManagement.User;
+import com.echriwbi3.model.accessManagement.User;
 import com.echriwbi3.security.models.AuthenticationRequest;
 import com.echriwbi3.security.models.AuthenticationResponse;
 import com.echriwbi3.security.models.ConnectedUser;

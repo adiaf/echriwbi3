@@ -1,11 +1,11 @@
-package com.echriwbi3.entity.projection;
+package com.echriwbi3.model.projection;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import com.echriwbi3.entity.Category;
+import com.echriwbi3.model.Category;
 
 @Projection(name = "exposedCategory", types = { Category.class })
 public interface ExposedCategory {

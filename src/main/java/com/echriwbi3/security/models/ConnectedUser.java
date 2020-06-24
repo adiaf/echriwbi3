@@ -2,7 +2,7 @@ package com.echriwbi3.security.models;
 
 import java.util.Set;
 
-import com.echriwbi3.entity.accessManagement.Role;
+import com.echriwbi3.model.accessManagement.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

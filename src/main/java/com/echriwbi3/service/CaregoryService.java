@@ -6,8 +6,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.echriwbi3.entity.Category;
-import com.echriwbi3.entity.QCategory;
+import com.echriwbi3.model.Category;
+import com.echriwbi3.model.QCategory;
 import com.echriwbi3.repository.CategoryRepository;
 import com.querydsl.core.types.Predicate;
 

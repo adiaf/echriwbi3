@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.echriwbi3.entity.accessManagement.QUser;
-import com.echriwbi3.entity.accessManagement.User;
+import com.echriwbi3.model.accessManagement.QUser;
+import com.echriwbi3.model.accessManagement.User;
 import com.echriwbi3.repository.UserRepository;
 import com.querydsl.core.types.Predicate;
 
