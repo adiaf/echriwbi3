@@ -3,16 +3,16 @@ package com.echriwbi3.model.common;
 import java.util.Date;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import lombok.Data;
 
 @Data
 public abstract class CommonEntity {
 
-	@MongoId
+	@Id
 	protected String id;
 
 	@CreatedDate

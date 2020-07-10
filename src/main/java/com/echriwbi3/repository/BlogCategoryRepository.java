@@ -3,8 +3,8 @@ package com.echriwbi3.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import com.echriwbi3.model.blog.Article;
+import com.echriwbi3.model.blog.Category;
 
-public interface BlogArticleRepository extends MongoRepository<Article, String>, QuerydslPredicateExecutor<Article> {
+public interface BlogCategoryRepository extends MongoRepository<Category, String>, QuerydslPredicateExecutor<Category> {
 
 }

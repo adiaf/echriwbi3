@@ -2,6 +2,7 @@ package com.echriwbi3;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,11 @@ import com.echriwbi3.model.accessManagement.Role;
 import com.echriwbi3.model.accessManagement.User;
 import com.echriwbi3.model.blog.Article;
 import com.echriwbi3.model.blog.Author;
+import com.echriwbi3.model.blog.Category;
 import com.echriwbi3.model.blog.Tag;
 import com.echriwbi3.repository.BlogArticleRepository;
+import com.echriwbi3.repository.BlogCategoryRepository;
+import com.echriwbi3.repository.BlogTagRepository;
 import com.echriwbi3.repository.UserRepository;
 
 @Component
@@ -26,20 +30,66 @@ public class PopulateData implements CommandLineRunner {
 	@Autowired
 	private BlogArticleRepository blogArticleRepository;
 
+	@Autowired
+	private BlogCategoryRepository blogCategoryRepository;
+
+	@Autowired
+	private BlogTagRepository blogTagRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
 
 		// if (blogArticleRepository.count() == 0) {
-		Article a = new Article();
 
+		List<Tag> tags = Arrays.asList(new Tag("Tag1", null, "tag1"), new Tag("Tag2", null, "tag2"),
+				new Tag("Tag3", null, "tag3"), new Tag("Tag4", null, "tag4"));
+
+		List<Tag> tags2 = Arrays.asList(new Tag("Tag5", null, "tag5"), new Tag("Tag6", null, "tag6"));
+
+		List<Category> cats = Arrays.asList(
+				new Category("Commerce électronique", "commerce-electronique", null, true, true, 0),
+				new Category("E-Paiement", "e-paiement", null, true, true, 1),
+				new Category("Législations", "legislations", "green", true, true, 2),
+				new Category("Banques", "banques", "orange", true, true, 3),
+				new Category("Algérie Poste", "algerie-poste", "purple", true, true, 4),
+				new Category("International", "international", "blue", true, true, 5));
+
+		Article a = new Article();
 		a.setTitle("It is a long established fact that a reader will");
+		a.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
 		a.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		a.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
-		a.setTags(Arrays.asList(new Tag("Hampden"), new Tag("Bonorum"), new Tag("Malorum")));
+		a.setCategory(cats.get(3));
+		a.setTags(tags);
+		a.setEnabled(true);
+		a.setEnVedette(true);
+		a.setRead(3);
+
+		Article b = new Article();
+		b.setTitle("Of passages of Lorem Ipsum available");
+		b.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		b.setContent(
+				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
+		b.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
+		b.setCategory(cats.get(4));
+		b.setTags(tags);
+		b.setEnabled(true);
+		b.setEnVedette(true);
+		b.setFeatured(true);
+		b.setRead(20);
 
 		blogArticleRepository.deleteAll();
+		blogCategoryRepository.deleteAll();
+		blogTagRepository.deleteAll();
+
+		blogTagRepository.saveAll(tags);
+		blogTagRepository.saveAll(tags2);
+
+		blogCategoryRepository.saveAll(cats);
+
 		blogArticleRepository.save(a);
+		blogArticleRepository.save(b);
 		// }
 
 		if (!userRepository.existsByUsername("adf")) {

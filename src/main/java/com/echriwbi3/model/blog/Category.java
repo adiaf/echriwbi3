@@ -9,15 +9,19 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "blog_tag")
+@Document(collection = "blog_category")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tag extends CommonEntity {
+public class Category extends CommonEntity {
 
-	private String name;
-	private String description;
+	private String title;
 	private String slug;
+
+	private String color;
+	private boolean showOnMenu = true;
+	private boolean enabled = true;
+	private int order = 0;
 
 }
