@@ -46,8 +46,7 @@ public class PopulateData implements CommandLineRunner {
 
 		List<Tag> tags2 = Arrays.asList(new Tag("Tag5", null, "tag5"), new Tag("Tag6", null, "tag6"));
 
-		List<Category> cats = Arrays.asList(
-				new Category("Commerce électronique", "commerce-electronique", null, true, true, 0),
+		List<Category> cats = Arrays.asList(new Category("E-Commerce", "e-commerce", null, true, true, 0),
 				new Category("E-Paiement", "e-paiement", null, true, true, 1),
 				new Category("Législations", "legislations", "green", true, true, 2),
 				new Category("Banques", "banques", "orange", true, true, 3),
@@ -68,7 +67,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article b = new Article();
 		b.setTitle("Of passages of Lorem Ipsum available");
-		b.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		b.setSlug("post-2");
 		b.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		b.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
@@ -81,7 +80,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article c = new Article();
 		c.setTitle("The Extremes of Good and Evi");
-		c.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		c.setSlug("post-3");
 		c.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		c.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
@@ -94,7 +93,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article d = new Article();
 		d.setTitle("Tend to repeat predefined chunks");
-		d.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		d.setSlug("post-4");
 		d.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		d.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
@@ -107,7 +106,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article e = new Article();
 		e.setTitle("There are many variations of passages ");
-		e.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		e.setSlug("post-5");
 		e.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		e.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
@@ -120,7 +119,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article f = new Article();
 		f.setTitle("The standard chunk of Lorem Ipsum");
-		f.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		f.setSlug("post-6");
 		f.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		f.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
@@ -133,7 +132,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article g = new Article();
 		g.setTitle("Packages and web page editors ");
-		g.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		g.setSlug("post-3");
 		g.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		g.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
@@ -146,7 +145,7 @@ public class PopulateData implements CommandLineRunner {
 
 		Article h = new Article();
 		h.setTitle("Where can I get some?");
-		h.setSlug("chrome-extension-protects-against-javascript-based-cpu-side-channel-attacks");
+		h.setSlug("post-2");
 		h.setContent(
 				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.");
 		h.setAuthor(new Author("Abderahmane DIAF", "a.diaf@outlook.fr"));
