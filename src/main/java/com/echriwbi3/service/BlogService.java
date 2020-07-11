@@ -84,6 +84,10 @@ public class BlogService {
 		return blogArticleRepository.findById(id);
 	}
 
+	public Optional<Tag> findTagById(String id) {
+		return blogTagRepository.findById(id);
+	}
+
 	public List<CategoryDTO> findAllCategories() {
 		final com.echriwbi3.model.blog.QCategory qCategory = new com.echriwbi3.model.blog.QCategory("user");
 		final com.echriwbi3.model.blog.QArticle qArticle = new com.echriwbi3.model.blog.QArticle("user");
@@ -103,7 +107,6 @@ public class BlogService {
 	}
 
 	public List<Tag> findAllTags() {
-		final com.echriwbi3.model.blog.QTag qTag = new com.echriwbi3.model.blog.QTag("user");
 		final com.echriwbi3.model.blog.QArticle qArticle = new com.echriwbi3.model.blog.QArticle("user");
 
 		List<Tag> tags = blogTagRepository.findAll();
@@ -112,5 +115,61 @@ public class BlogService {
 			return blogArticleRepository.count(aPredicate) > 0;
 
 		}).collect(Collectors.toList());
+	}
+
+	public Optional<Category> getCategoryById(String id) {
+		return blogCategoryRepository.findById(id);
+	}
+
+	public Article getCategoryLastPostByCategoryId(String id) {
+		final com.echriwbi3.model.blog.QArticle qArticle = new com.echriwbi3.model.blog.QArticle("user");
+		final Predicate predicate = qArticle.enabled.eq(true).and(qArticle.category.id.eq(id));
+		final Pageable pageable = PageRequest.of(0, 1, Sort.by("created").descending());
+
+		Page<Article> arricles = blogArticleRepository.findAll(predicate, pageable);
+		try {
+			return arricles.stream().findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	public Page<Article> getBlogCategoryPosts(String id, int start, int size, String postNotContainedId) {
+		final com.echriwbi3.model.blog.QArticle qArticle = new com.echriwbi3.model.blog.QArticle("user");
+
+		final Predicate predicate = qArticle.enabled.eq(true).and(qArticle.category.id.eq(id))
+				.and(qArticle.id.eq(postNotContainedId).not());
+		final Pageable pageable = PageRequest.of(start, size, Sort.by("created").descending());
+		return blogArticleRepository.findAll(predicate, pageable);
+	}
+
+	public Article getTagLastPostBytTagId(String id) {
+		final com.echriwbi3.model.blog.QArticle qArticle = new com.echriwbi3.model.blog.QArticle("user");
+
+		try {
+			final Predicate predicate = qArticle.enabled.eq(true)
+					.and(qArticle.tags.contains(blogTagRepository.findById(id).get()));
+			final Pageable pageable = PageRequest.of(0, 1, Sort.by("created").descending());
+
+			Page<Article> arricles = blogArticleRepository.findAll(predicate, pageable);
+			return arricles.stream().findFirst().get();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public Page<Article> getBlogTagPosts(String id, int start, int size, String mainPostId) {
+		try {
+			final com.echriwbi3.model.blog.QArticle qArticle = new com.echriwbi3.model.blog.QArticle("user");
+
+			final Predicate predicate = qArticle.enabled.eq(true)
+					.and(qArticle.tags.contains(blogTagRepository.findById(id).get()))
+					.and(qArticle.id.eq(mainPostId).not());
+			final Pageable pageable = PageRequest.of(start, size, Sort.by("created").descending());
+			return blogArticleRepository.findAll(predicate, pageable);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }
