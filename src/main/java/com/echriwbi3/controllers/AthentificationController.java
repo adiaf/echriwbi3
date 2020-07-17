@@ -41,6 +41,12 @@ public class AthentificationController {
 	UserService userService;
 
 	@CrossOrigin
+	@RequestMapping(value = "/ping", method = RequestMethod.GET)
+	public ResponseEntity<?> ping() throws Exception {
+		return ResponseEntity.ok("OK");
+	}
+
+	@CrossOrigin
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAthentificationToken(@RequestBody final AuthenticationRequest authenticationRequest)
 			throws Exception {
